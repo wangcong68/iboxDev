@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hselfweb.ibox.ibox.mapper.RecordMapper">
+  <resultMap id="BaseResultMap" type="cn.hselfweb.ibox.ibox.model.Record">
+    <result column="uuid" jdbcType="INTEGER" property="uuid" />
+    <result column="ice_id" jdbcType="INTEGER" property="iceId" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="opflag" jdbcType="INTEGER" property="opflag" />
+    <result column="opdate" jdbcType="TIMESTAMP" property="opdate" />
+    <result column="tareweight" jdbcType="INTEGER" property="tareweight" />
+    <result column="foodweight" jdbcType="INTEGER" property="foodweight" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.hselfweb.ibox.ibox.model.Record">
+    insert into record (uuid, ice_id, fid, 
+      opflag, opdate, tareweight, 
+      foodweight)
+    values (#{uuid,jdbcType=INTEGER}, #{iceId,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, 
+      #{opflag,jdbcType=INTEGER}, #{opdate,jdbcType=TIMESTAMP}, #{tareweight,jdbcType=INTEGER}, 
+      #{foodweight,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.hselfweb.ibox.ibox.model.Record">
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="iceId != null">
+        ice_id,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="opflag != null">
+        opflag,
+      </if>
+      <if test="opdate != null">
+        opdate,
+      </if>
+      <if test="tareweight != null">
+        tareweight,
+      </if>
+      <if test="foodweight != null">
+        foodweight,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="iceId != null">
+        #{iceId,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="opflag != null">
+        #{opflag,jdbcType=INTEGER},
+      </if>
+      <if test="opdate != null">
+        #{opdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tareweight != null">
+        #{tareweight,jdbcType=INTEGER},
+      </if>
+      <if test="foodweight != null">
+        #{foodweight,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

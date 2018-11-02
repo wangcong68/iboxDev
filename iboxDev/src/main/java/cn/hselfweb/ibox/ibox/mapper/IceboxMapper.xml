@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hselfweb.ibox.ibox.mapper.IceboxMapper">
+  <resultMap id="BaseResultMap" type="cn.hselfweb.ibox.ibox.model.Icebox">
+    <id column="ice_id" jdbcType="INTEGER" property="iceId" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="ice_name" jdbcType="VARCHAR" property="iceName" />
+    <result column="mac_addr" jdbcType="VARCHAR" property="macAddr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ice_id, fid, ice_name, mac_addr
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from icebox
+    where ice_id = #{iceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from icebox
+    where ice_id = #{iceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.hselfweb.ibox.ibox.model.Icebox">
+    insert into icebox (ice_id, fid, ice_name, 
+      mac_addr)
+    values (#{iceId,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{iceName,jdbcType=VARCHAR}, 
+      #{macAddr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.hselfweb.ibox.ibox.model.Icebox">
+    insert into icebox
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="iceId != null">
+        ice_id,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="iceName != null">
+        ice_name,
+      </if>
+      <if test="macAddr != null">
+        mac_addr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="iceId != null">
+        #{iceId,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="iceName != null">
+        #{iceName,jdbcType=VARCHAR},
+      </if>
+      <if test="macAddr != null">
+        #{macAddr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hselfweb.ibox.ibox.model.Icebox">
+    update icebox
+    <set>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="iceName != null">
+        ice_name = #{iceName,jdbcType=VARCHAR},
+      </if>
+      <if test="macAddr != null">
+        mac_addr = #{macAddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ice_id = #{iceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.hselfweb.ibox.ibox.model.Icebox">
+    update icebox
+    set fid = #{fid,jdbcType=INTEGER},
+      ice_name = #{iceName,jdbcType=VARCHAR},
+      mac_addr = #{macAddr,jdbcType=VARCHAR}
+    where ice_id = #{iceId,jdbcType=INTEGER}
+  </update>
+</mapper>

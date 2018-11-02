@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hselfweb.ibox.ibox.mapper.UnofficialCardMapper">
+  <resultMap id="BaseResultMap" type="cn.hselfweb.ibox.ibox.model.UnofficialCard">
+    <id column="uuid" jdbcType="INTEGER" property="uuid" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="food_url" jdbcType="VARCHAR" property="foodUrl" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="food_name" jdbcType="VARCHAR" property="foodName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, fid, food_url, type, start_time, food_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from unofficialcard
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from unofficialcard
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.hselfweb.ibox.ibox.model.UnofficialCard">
+    insert into unofficialcard (uuid, fid, food_url, 
+      type, start_time, food_name
+      )
+    values (#{uuid,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{foodUrl,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{foodName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.hselfweb.ibox.ibox.model.UnofficialCard">
+    insert into unofficialcard
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="foodUrl != null">
+        food_url,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="foodName != null">
+        food_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="foodUrl != null">
+        #{foodUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="foodName != null">
+        #{foodName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hselfweb.ibox.ibox.model.UnofficialCard">
+    update unofficialcard
+    <set>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="foodUrl != null">
+        food_url = #{foodUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="foodName != null">
+        food_name = #{foodName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.hselfweb.ibox.ibox.model.UnofficialCard">
+    update unofficialcard
+    set fid = #{fid,jdbcType=INTEGER},
+      food_url = #{foodUrl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      food_name = #{foodName,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=INTEGER}
+  </update>
+</mapper>
